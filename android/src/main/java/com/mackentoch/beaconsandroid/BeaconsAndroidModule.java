@@ -318,16 +318,15 @@ public class BeaconsAndroidModule extends ReactContextBaseJavaModule implements 
 
   @ReactMethod
   public void stopMonitoring(String regionId, String beaconUuid, int minor, int major, Callback resolve, Callback reject) {
-      Region region = createRegion(
-        regionId,
-        beaconUuid,
-        String.valueOf(minor).equals("-1") ? "" : String.valueOf(minor),
-        String.valueOf(major).equals("-1") ? "" : String.valueOf(major)
-        // minor,
-        // major
-      );
-
       try {
+          Region region = createRegion(
+            regionId,
+            beaconUuid,
+            String.valueOf(minor).equals("-1") ? "" : String.valueOf(minor),
+            String.valueOf(major).equals("-1") ? "" : String.valueOf(major)
+            // minor,
+            // major
+          );
           mBeaconManager.stopMonitoringBeaconsInRegion(region);
           resolve.invoke();
       } catch (Exception e) {
