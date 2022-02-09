@@ -404,8 +404,8 @@ public class BeaconsAndroidModule extends ReactContextBaseJavaModule implements 
 
   @ReactMethod
   public void stopRanging(String regionId, String beaconUuid, Callback resolve, Callback reject) {
-      Region region = createRegion(regionId, beaconUuid);
       try {
+          Region region = createRegion(regionId, beaconUuid);
           mBeaconManager.stopRangingBeaconsInRegion(region);
           resolve.invoke();
       } catch (Exception e) {
