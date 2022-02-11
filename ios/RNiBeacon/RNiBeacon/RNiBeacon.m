@@ -242,11 +242,17 @@ RCT_EXPORT_METHOD(startRangingBeaconsInRegion:(NSDictionary *) dict)
 
 RCT_EXPORT_METHOD(stopMonitoringForRegion:(NSDictionary *) dict)
 {
+  if ([dict[@"identifier"] isKindOfClass:[NSNull class]]) {
+    return;
+  }
   [self.locationManager stopMonitoringForRegion:[self convertDictToBeaconRegion:dict]];
 }
 
 RCT_EXPORT_METHOD(stopRangingBeaconsInRegion:(NSDictionary *) dict)
 {
+  if ([dict[@"identifier"] isKindOfClass:[NSNull class]]) {
+    return;
+  }
   if ([dict[@"identifier"] isEqualToString:kEddystoneRegionID]) {
     [self.eddyStoneScanner stopScanning];
   } else {
